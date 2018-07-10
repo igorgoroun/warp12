@@ -1,0 +1,24 @@
+{
+    "name": "snakemkua/warp12bundle",
+    "description": "A simple site management system written on Symfony",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Igor Goroun",
+            "email": "igor.goroun@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0",
+    },
+    "autoload": {
+        "psr-4": {"snakemkua\\Warp12Bundle\\": ""}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
