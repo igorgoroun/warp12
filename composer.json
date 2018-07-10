@@ -1,7 +1,7 @@
 {
     "name": "snakemkua/warp12bundle",
     "description": "A simple site management system written on Symfony",
-    "type": "project",
+    "type": "symfony-bundle",
     "license": "GPL-3.0",
     "authors": [
         {
