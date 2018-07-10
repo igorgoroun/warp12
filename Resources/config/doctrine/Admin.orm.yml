@@ -11,17 +11,17 @@ snakemkua\Warp12Bundle\Entity\Admin:
     fields:
         name:
             type: string
-            length: '32'
+            length: 32
         email:
             type: string
-            length: '64'
+            length: 64
             unique: true
         password:
             type: string
-            length: '64'
+            length: 64
         plainPassword:
             type: string
-            length: '64'
+            length: 64
             nullable: true
         active:
             type: boolean

@@ -11,18 +11,18 @@ snakemkua\Warp12Bundle\Entity\Slug:
     fields:
         src:
             type: string
-            length: '128'
+            length: 128
             unique: true
         url:
             type: string
-            length: '128'
+            length: 128
             unique: true
         class:
             type: string
-            length: '128'
+            length: 128
         class_previous:
             type: string
-            length: '128'
+            length: 128
         targetId:
             type: integer
             nullable: false
