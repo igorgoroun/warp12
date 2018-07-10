@@ -182,20 +182,26 @@ class PageController extends Controller implements WarpModuleInterface
     {
         $em = $this->getDoctrine()->getManager();
         $tpl = '@Warp12/Page/ui-page-view.html.twig';
-        $templates = $this->container->getParameter('warp12templates');
-        if ($templates and array_key_exists('page_default', $templates)) {
-            $tpl = $templates['page_default'];
+        if ($this->container->hasParameter('warp12templates')) {
+            $templates = $this->container->getParameter('warp12templates');
+            if ($templates and array_key_exists('page_default', $templates)) {
+                $tpl = $templates['page_default'];
+            }
         }
         $page = null;
+        $class = __CLASS__;
         if ($request->attributes->get('slug')) {
             $slug = $em->getRepository('Warp12Bundle:Slug')->findOneBy(['url'=>$request->attributes->get('slug'), 'current'=>true]);
             if ($slug and $slug instanceof Slug) {
                 $page = $slug->getConsumer();
+                $class = $slug->getClass();
             }
         }
+
         return $this->render($tpl, [
-            'warp_current_controller' => __CLASS__,
+            'warp_current_controller' => $class,
             'page' => $page,
+            'menu' => $this->get('warp12.ui')->getRootMenu(),
         ]);
     }
 
