@@ -1,0 +1,3 @@
+{% for item in menulist %}
+<li><a href="{{ path(item.mainroute) }}" class=""><i class="material-icons">{{ item.materialicon }}</i>{{ item.showname }}</a></li>
+{% endfor %}

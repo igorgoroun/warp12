@@ -1,0 +1,28 @@
+{% for page in pages %}
+    <li class="collection-item avatar">
+        <a href="{{ path('warp_page_content_view', {id: page.id}) }}"><i class="material-icons circle {% if page.published %}blue-grey{% endif %}">{% if page.published %}folder{% else %}visibility_off{% endif %}</i></a>
+        <span class="title">
+                        <a href="{{ path('warp_page_content_view', {id: page.id}) }}" class=" blue-grey-text text-darken-4">{{ page.name }}</a>
+            {% if page.module %}
+                <span class="grey-text text-lighten-2"> &rarr; {{ page.module }}</span>
+            {% endif %}
+                    </span>
+        <!--<p>{{ page.title }}</p>-->
+        {% if page.urls.first().url is defined %}
+        <p class="blue-grey-text text-lighten-2">{{ path('seo_url', {'slug': page.urls.first().url}) }}</p>
+        {% endif %}
+
+        <span class="secondary-content">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button blue-grey-text' href='#' data-activates='page_dropdown_{{ page.id }}'><i class="material-icons">arrow_drop_down</i></a>
+            <!-- Dropdown Structure -->
+                        <ul id='page_dropdown_{{ page.id }}' class='dropdown-content'>
+                            <li><a href="{{ path('warp_page_content_view', {id: page.id}) }}">Контент страницы</a></li>
+                            <li><a href="{{ path('warp_page_content_modify', {'id': page.id}) }}">Редактировать контент</a></li>
+                            <li class="divider"></li>
+                            {% if page.urls.first().url is defined %}<li><a href="{{ path('seo_url', {'slug': page.urls.first().url}) }}" target="_blank">Посмотреть страницу</a></li>{% endif %}
+                            <li><a href="{{ path('warp_page_modify', {id: page.id}) }}">Настройки страницы</a></li>
+                        </ul>
+                    </span>
+    </li>
+{% endfor %}

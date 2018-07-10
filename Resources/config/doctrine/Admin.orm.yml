@@ -1,0 +1,35 @@
+snakemkua\Warp12Bundle\Entity\Admin:
+    type: entity
+    table: null
+    repositoryClass: snakemkua\Warp12Bundle\Repository\AdminRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '32'
+        email:
+            type: string
+            length: '64'
+            unique: true
+        password:
+            type: string
+            length: '64'
+        plainPassword:
+            type: string
+            length: '64'
+            nullable: true
+        active:
+            type: boolean
+            options:
+                default: false
+        created:
+            type: datetime
+        updated:
+            type: datetime
+
+    lifecycleCallbacks: {}

@@ -1,0 +1,47 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        snakemkua\Warp12Bundle\Entity\Admin:
+            algorithm: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        sqldb:
+            entity:
+                class: snakemkua\Warp12Bundle\Entity\Admin
+                property: email
+    access_control:
+        - { path: ^/warp12/.+/modify, roles: ROLE_ADMIN }
+        - { path: ^/warp12/.+/create, roles: ROLE_ADMIN }
+        - { path: ^/warp12/.+/create/\d+, roles: ROLE_ADMIN }
+        - { path: ^/warp12/.+/list, roles: ROLE_ADMIN }
+        - { path: ^/warp12/dashboard, roles: ROLE_ADMIN }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            #http_basic: ~
+            anonymous: ~
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+                default_target_path: admin_dashboard
+                username_parameter: _email
+                password_parameter: _password
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: admin_logout
+                target: admin_login
+            remember_me:
+                secret: '%secret%'
+                lifetime: 604800
+                path: /
+                remember_me_parameter: _remember

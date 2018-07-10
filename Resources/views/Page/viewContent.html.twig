@@ -1,0 +1,45 @@
+{% extends '@Warp12/Admin/layout.html.twig' %}
+
+{% block layout_header %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block module_menu %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_navbar %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block module_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#pagecontent">Контент</a></li>
+                    <li class="tab col s3"><a href="#subpages">Страницы</a></li>
+                </ul>
+            </div>
+            <div id="pagecontent" class="col s12">
+                <p>{{ page.body|raw }}</p>
+            </div>
+            <div id="subpages" class="col s12">
+                <ul class="collection warp12pages_list">
+                {{ include('@Warp12/Page/pages_list_part.html.twig') }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{%  endblock %}
+
+
+{% block layout_footer %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,19 @@
+services:
+#    warp12.example:
+#        class: snakemkua\Warp12Bundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+  warp12.slug:
+    class: snakemkua\Warp12Bundle\Controller\SlugController
+    #arguments: ["@doctrine.orm.container_repository_factory"]
+    calls:
+      - [setContainer, ["@service_container"]]
+
+  warp12.default:
+    class: snakemkua\Warp12Bundle\Controller\DefaultController
+    calls:
+      - [setContainer, ["@service_container"]]
+
+  warp12.ui:
+    class: snakemkua\Warp12Bundle\Controller\UIMenuController
+    calls:
+      - [setContainer, ["@service_container"]]

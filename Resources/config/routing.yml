@@ -1,0 +1,56 @@
+# Main route
+home:
+    path: /
+    defaults: { _controller: Warp12Bundle:Router:routeMain }
+
+
+# backend commons
+warp:
+    path: /warp12/
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: warp_page
+        permanent: true
+
+admin_login:
+    path: /warp12/signin
+    defaults: { _controller: Warp12Bundle:Admin:login }
+
+admin_logout:
+    path: /warp12/signout
+    defaults: { _controller: Warp12Bundle:Admin:logout }
+
+admin_dashboard:
+    path: /warp12/dashboard
+    defaults: { _controller: Warp12Bundle:Admin:dashboard }
+
+# backend pages
+warp_page:
+    path: /warp12/page
+    defaults: { _controller: Warp12Bundle:Page:index }
+warp_page_create:
+    path: /warp12/page/create
+    defaults: { _controller: Warp12Bundle:Page:create }
+warp_page_create_sub:
+    path: /warp12/page/create/{parent}
+    defaults: { _controller: Warp12Bundle:Page:create, parent: false }
+warp_page_modify:
+    path: /warp12/page/{id}/modify
+    defaults: { _controller: Warp12Bundle:Page:modify }
+warp_page_content_view:
+    path: /warp12/page/{id}/content
+    defaults: { _controller: Warp12Bundle:Page:viewContent }
+warp_page_content_modify:
+    path: /warp12/page/{id}/contentmodify
+    defaults: { _controller: Warp12Bundle:Page:modifyContent }
+
+# frontend
+seo_url:
+    path: /{slug}.{_format}
+    defaults: { _controller: Warp12Bundle:Router:route, _format: html }
+    requirements:
+      _format: html
+
+incorrect_url:
+    path: /{_incorrect}
+    defaults: { _controller: Warp12Bundle:Router:route404, _incorrect: False }

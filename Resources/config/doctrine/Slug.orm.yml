@@ -1,0 +1,45 @@
+snakemkua\Warp12Bundle\Entity\Slug:
+    type: entity
+    table: null
+    repositoryClass: snakemkua\Warp12Bundle\Repository\SlugRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        src:
+            type: string
+            length: '128'
+            unique: true
+        url:
+            type: string
+            length: '128'
+            unique: true
+        class:
+            type: string
+            length: '128'
+        class_previous:
+            type: string
+            length: '128'
+        targetId:
+            type: integer
+            nullable: false
+        current:
+            type: boolean
+            options:
+                default: true
+        dateCreated:
+            type: datetime
+
+    manyToOne:
+        consumer:
+            targetEntity: snakemkua\Warp12Bundle\Entity\Page
+            inversedBy: urls
+            joinColumn:
+                name: consumer_id
+                referencedColumnName: id
+
+    lifecycleCallbacks:
+        prePersist: [generateUrl]

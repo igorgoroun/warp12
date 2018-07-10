@@ -1,0 +1,5 @@
+{% if id is defined %}
+<li><a href="{{ path('warp_page_create_sub', {'parent': id}) }}"><i class="material-icons left">add</i>Добавить страницу</a></li>
+{% else %}
+<li><a href="{{ path('warp_page_create') }}"><i class="material-icons left">add</i>Добавить страницу</a></li>
+{% endif %}

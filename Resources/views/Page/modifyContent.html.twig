@@ -1,0 +1,65 @@
+{% extends '@Warp12/Admin/layout.html.twig' %}
+
+{% block layout_header %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block module_menu %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_navbar %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block module_content %}
+    <div class="container_">
+    <div class="row">
+        {{ form_start(form, {'attr': {'class':'col s12 l12'}}) }}
+        {{ form_errors(form) }}
+        <div class="col s12">
+        <div class="section">
+            <h5 class="lime-text darken-4">Page content</h5>
+        </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form_widget(form.body) }}
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form_widget(form.save) }}
+                <a href="{{ path('warp_page') }}" class="waves-effect waves-light btn-flat right">cancel</a>
+            </div>
+        </div>
+        {{ form_end(form) }}    </div>
+    </div>
+{%  endblock %}
+
+
+{% block layout_footer %}
+    {{ parent() }}
+    <script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'page_content_body', {
+            toolbar: [
+                { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+                { name: 'styles', items: [ 'Format' ] },
+                { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat' ] },
+                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+                { name: 'links', items: [ 'Link', 'Unlink' ] },
+                { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+                { name: 'insert', items: [ 'Image', 'Table' ] },
+            ],
+        });
+    </script>
+{% endblock %}

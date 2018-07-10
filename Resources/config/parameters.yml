@@ -1,0 +1,18 @@
+warp12:
+  modules:
+    - {
+        uin: 'warp_dashboard',
+        controller: snakemkua\Warp12Bundle\Controller\AdminController,
+        showname: 'Dashboard',
+        mainroute: 'admin_dashboard',
+        materialicon: 'dashboard',
+        menuvisible: false
+      }
+    - {
+        uin: 'warp_page',
+        controller: snakemkua\Warp12Bundle\Controller\PageController,
+        showname: 'Страницы',
+        mainroute: 'warp_page',
+        materialicon: 'folder',
+        menuvisible: true
+      }

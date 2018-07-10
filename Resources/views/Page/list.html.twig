@@ -1,0 +1,49 @@
+{% extends '@Warp12/Admin/layout.html.twig' %}
+
+{% block layout_header %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block module_menu %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_navbar %}
+    {{ parent() }}
+{% endblock %}
+{% block layout_sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block module_content %}
+    <!--
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i>фывыфв</a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i>ааа</a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+            <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+    -->
+    <div class="container">
+    <div class="row">
+        <div class="col s12">
+            <ul class="collection warp12pages_list">
+                {{ include('@Warp12/Page/pages_list_part.html.twig') }}
+            </ul>
+        </div>
+    </div>
+    </div>
+{%  endblock %}
+
+
+{% block layout_footer %}
+    {{ parent() }}
+{% endblock %}
