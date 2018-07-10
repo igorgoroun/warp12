@@ -17,3 +17,9 @@ services:
     class: snakemkua\Warp12Bundle\Controller\UIMenuController
     calls:
       - [setContainer, ["@service_container"]]
+
+# commands
+
+    snakemkua\Warp12Bundle\Command\WarpUserCreateCommand:
+	tags:
+            - { name: 'console.command', command: 'warp:user:create' }
