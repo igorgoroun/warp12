@@ -20,6 +20,7 @@ security:
         - { path: ^/warp12/.+/create/\d+, roles: ROLE_ADMIN }
         - { path: ^/warp12/.+/list, roles: ROLE_ADMIN }
         - { path: ^/warp12/dashboard, roles: ROLE_ADMIN }
+        - { path: ^/warp12/page, roles: ROLE_ADMIN }
 
     firewalls:
         dev:

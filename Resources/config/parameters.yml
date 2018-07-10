@@ -1,3 +1,7 @@
+parameters:
+  warp12templates:
+    page_default: Warp12Bundle:Default:pagehook.html.twig
+
 warp12:
   modules:
     - {

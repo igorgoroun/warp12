@@ -15,3 +15,10 @@ $bundles = [
 ]
 ```
 
+### Create new module
+
+```bash
+bin/console generate:bundle
+
+```
+

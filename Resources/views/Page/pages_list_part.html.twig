@@ -2,11 +2,11 @@
     <li class="collection-item avatar">
         <a href="{{ path('warp_page_content_view', {id: page.id}) }}"><i class="material-icons circle {% if page.published %}blue-grey{% endif %}">{% if page.published %}folder{% else %}visibility_off{% endif %}</i></a>
         <span class="title">
-                        <a href="{{ path('warp_page_content_view', {id: page.id}) }}" class=" blue-grey-text text-darken-4">{{ page.name }}</a>
+            <a href="{{ path('warp_page_content_view', {id: page.id}) }}" class=" blue-grey-text text-darken-4">{{ page.name }}</a>
             {% if page.module %}
                 <span class="grey-text text-lighten-2"> &rarr; {{ page.module }}</span>
             {% endif %}
-                    </span>
+        </span>
         <!--<p>{{ page.title }}</p>-->
         {% if page.urls.first().url is defined %}
         <p class="blue-grey-text text-lighten-2">{{ path('seo_url', {'slug': page.urls.first().url}) }}</p>

@@ -35,6 +35,11 @@ class PageType extends AbstractType
                 'attr' => ['class' => ''],
                 'required' => false
             ])
+            ->add('homepage', CheckboxType::class, [
+                'label' => 'Стартовая страница сайта',
+                'attr' => ['class' => ''],
+                'required' => false
+            ])
             ->add('module', ChoiceType::class, [
                 'required' => false,
                 'label' => 'Точка входа модуля',

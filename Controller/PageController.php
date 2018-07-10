@@ -48,6 +48,7 @@ class PageController extends Controller implements WarpModuleInterface
         }
 
         $modules = $this->getParameter('warp12.modules');
+
         $form = $this->createForm(PageType::class, $page, array(
             'modules_list' => $modules
         ));
@@ -61,7 +62,18 @@ class PageController extends Controller implements WarpModuleInterface
             $slug_class = $modules[$page->getModule()]['controller'];
         }
         if ($form->isSubmitted() && $form->isValid()) {
+            // check homepage was set
+            if ($page->getHomepage()) {
+                $rep = $this->getDoctrine()->getRepository('Warp12Bundle:Page');
+                $query = $rep->createQueryBuilder('s');
+                $query
+                    ->update()
+                    ->set('s.homepage', 0)
+                    ->where($query->expr()->notIn('s.id', [$page->getId()]));
+                $query->getQuery()->execute();
+            }
             $em->persist($page);
+            $em->flush();
             $slug = new Slug();
             $slug->setSrc($page->getTitle());
             $slug->setClass($slug_class);
@@ -71,7 +83,7 @@ class PageController extends Controller implements WarpModuleInterface
             $slug->setCurrent(true);
             $em->persist($slug);
             $em->flush();
-            return $this->redirectToRoute('warp_page');
+            return $this->redirectToRoute('warp_page_content_view', ['id'=>$page->getId()]);
         }
 
         return $this->render('@Warp12/Page/form.html.twig', [
@@ -89,6 +101,16 @@ class PageController extends Controller implements WarpModuleInterface
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $page->setDateUpdated(new \DateTime());
+            // check homepage was set
+            if ($page->getHomepage()) {
+                $rep = $this->getDoctrine()->getRepository('Warp12Bundle:Page');
+                $query = $rep->createQueryBuilder('s');
+                $query
+                    ->update()
+                    ->set('s.homepage', 0)
+                    ->where($query->expr()->notIn('s.id', [$page->getId()]));
+                $query->getQuery()->execute();
+            }
             $em->persist($page);
             # check module
             $slug_class = __CLASS__;
@@ -117,7 +139,7 @@ class PageController extends Controller implements WarpModuleInterface
                 $em->flush();
             }
             $em->flush();
-            return $this->redirectToRoute('warp_page');
+            return $this->redirectToRoute('warp_page_content_view', ['id'=>$page->getId()]);
         }
         return $this->render('@Warp12/Page/form.html.twig', [
             'form' => $form->createView(),
@@ -136,7 +158,7 @@ class PageController extends Controller implements WarpModuleInterface
             $page->setDateUpdated(new \DateTime());
             $em->persist($page);
             $em->flush();
-            return $this->redirectToRoute('warp_page');
+            return $this->redirectToRoute('warp_page_content_view', ['id'=>$page->getId()]);
         }
 
         return $this->render('@Warp12/Page/modifyContent.html.twig', [
@@ -183,8 +205,9 @@ class PageController extends Controller implements WarpModuleInterface
         $name = '';
         $page = $request->attributes->get('page');
         if ($page and $page instanceof Page) {
-            $name = $page->getTitle();
+            $name = $page->getName();
         }
+
 
         return $this->render('@Warp12/Page/topline.html.twig', [
             'name' => $name

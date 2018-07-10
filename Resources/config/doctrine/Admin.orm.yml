@@ -9,7 +9,7 @@ snakemkua\Warp12Bundle\Entity\Admin:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        realname:
             type: string
             length: 32
         email:

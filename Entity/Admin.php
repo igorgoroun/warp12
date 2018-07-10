@@ -17,7 +17,7 @@ class Admin implements UserInterface
     /**
      * @var string
      */
-    private $name;
+    private $realname;
 
     /**
      * @var string
@@ -69,7 +69,7 @@ class Admin implements UserInterface
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->realname = $name;
 
         return $this;
     }
@@ -81,7 +81,7 @@ class Admin implements UserInterface
      */
     public function getName()
     {
-        return $this->name;
+        return $this->realname;
     }
 
     /**
@@ -274,7 +274,7 @@ class Admin implements UserInterface
     public function getUsername()
     {
         // TODO: Implement getUsername() method.
-        return $this->name;
+        return $this->realname;
     }
 
     /**

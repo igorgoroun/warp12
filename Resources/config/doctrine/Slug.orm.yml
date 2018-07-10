@@ -23,6 +23,7 @@ snakemkua\Warp12Bundle\Entity\Slug:
         class_previous:
             type: string
             length: 128
+            nullable: true
         targetId:
             type: integer
             nullable: false
