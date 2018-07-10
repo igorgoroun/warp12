@@ -19,7 +19,6 @@ services:
       - [setContainer, ["@service_container"]]
 
 # commands
-
-    snakemkua\Warp12Bundle\Command\WarpUserCreateCommand:
-	tags:
-            - { name: 'console.command', command: 'warp:user:create' }
+  snakemkua\Warp12Bundle\Command\WarpUserCreateCommand:
+    tags:
+      - { name: 'console.command', command: 'warp:user:create' }

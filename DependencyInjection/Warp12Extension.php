@@ -31,5 +31,6 @@ class Warp12Extension extends Extension
             'materialicon' => 'folder'
         ]);*/
         $container->setParameter('warp12.modules', $config['modules']);
+        //$container->register(WarpUserCreateCommand::class)->addTag('console.command', array('command'=>'warp:user:create'));
     }
 }
