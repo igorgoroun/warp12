@@ -9,6 +9,7 @@ use snakemkua\Warp12Bundle\Form\PageContentType;
 use snakemkua\Warp12Bundle\WarpModuleInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller implements WarpModuleInterface
@@ -167,7 +168,7 @@ class PageController extends Controller implements WarpModuleInterface
         ]);
     }
 
-    public function warpDropdownMenu(Request $request)
+    public function warpDropdownMenu(Request $request) : Response
     {
         $route = $request->attributes->get('_route');
         switch ($route) {
@@ -178,14 +179,14 @@ class PageController extends Controller implements WarpModuleInterface
         return $this->render('@Warp12/Page/dropmenu_top.html.twig', []);
     }
 
-    public function warpUIRenderLayout(Request $request)
+    public function warpUIRenderLayout(Request $request) : Response
     {
         $em = $this->getDoctrine()->getManager();
         $tpl = '@Warp12/Page/ui-page-view.html.twig';
         if ($this->container->hasParameter('warp12templates')) {
             $templates = $this->container->getParameter('warp12templates');
             if ($templates and array_key_exists('page_default', $templates)) {
-                $tpl = $templates['page_default'];
+                $tpl = ($templates['page_default']{0} != '@'?'@':'').$templates['page_default'];
             }
         }
         $page = null;
@@ -205,7 +206,7 @@ class PageController extends Controller implements WarpModuleInterface
         ]);
     }
 
-    public function warpTopLine(Request $request)
+    public function warpTopLine(Request $request) : Response
     {
         $state = '';
         $name = '';

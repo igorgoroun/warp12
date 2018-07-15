@@ -3,12 +3,14 @@
 namespace snakemkua\Warp12Bundle;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 interface WarpModuleInterface
 {
-    public function warpDropdownMenu(Request $request);
+ 
+    public function warpUIRenderLayout(Request $request) : Response;
 
-    public function warpUIRenderLayout(Request $request);
+    public function warpDropdownMenu(Request $request) : Response;
 
-    public function warpTopLine(Request $request);
+    public function warpTopLine(Request $request) : Response;
 }

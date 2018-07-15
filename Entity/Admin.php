@@ -2,12 +2,13 @@
 
 namespace snakemkua\Warp12Bundle\Entity;
 
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Admin
  */
-class Admin implements UserInterface
+class Admin implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -274,7 +275,7 @@ class Admin implements UserInterface
     public function getUsername()
     {
         // TODO: Implement getUsername() method.
-        return $this->realname;
+        return $this->email;
     }
 
     /**
@@ -287,4 +288,28 @@ class Admin implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
 }
