@@ -4,6 +4,7 @@ A simple site management system written on Symfony.
 ### Install:
 ```
 composer require snakemkua/warp12bundle
+composer require stof/doctrine-extensions-bundle
 ```
 
 ### Register bundle
